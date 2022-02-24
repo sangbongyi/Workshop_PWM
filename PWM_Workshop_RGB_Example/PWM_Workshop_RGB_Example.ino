@@ -10,10 +10,6 @@
 
 Adafruit_TLC59711 tlc = Adafruit_TLC59711(NUM_TLC59711, clock, data);
 
-uint16_t val_r = 0;
-uint16_t val_g = 0;
-uint16_t val_b = 0;
-
 int switchPin = 2;
 
 int a_red_pin = A0;

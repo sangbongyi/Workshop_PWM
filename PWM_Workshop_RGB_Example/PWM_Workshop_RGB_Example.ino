@@ -10,8 +10,6 @@
 
 Adafruit_TLC59711 tlc = Adafruit_TLC59711(NUM_TLC59711, clock, data);
 
-int switchPin = 2;
-
 int a_red_pin = A0;
 int a_green_pin = A1;
 int a_blue_pin = A2;
@@ -21,8 +19,6 @@ int sensorValue_green = 0;
 int sensorValue_blue = 0;
 
 void setup() {
-  pinMode(switchPin, INPUT);
-  
   tlc.begin();
   tlc.write();
 }

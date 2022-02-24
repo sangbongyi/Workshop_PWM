@@ -11,7 +11,10 @@
 Adafruit_TLC59711 tlc = Adafruit_TLC59711(NUM_TLC59711, clock, data);
 
 int a_brightness_pin = A0;
+int a_ledNumber_pin = A1;
+
 int sensorValue_brightness = 0;
+int sensorValue_number = 0;
 
 void setup() {
   tlc.begin();
@@ -27,6 +30,8 @@ void loop() {
   //setLedPwm(10, setBright_Led());  //G3 Channel
   //setLedPwm(11, setBright_Led());  //B3 Channel
 
+  //changeLed(setBright_Led());
+  
   //changeBr(setBright_Led());
   //delay(100);
 }
@@ -36,6 +41,28 @@ int setBright_Led() {
   sensorValue_brightness = analogRead(a_brightness_pin);
   val = map(sensorValue_brightness, 0, 1023, 0, 65535);
   return val;
+}
+
+int setNumber_Led() {
+  int val;
+  sensorValue_number = analogRead(a_ledNumber_pin);
+  val = map(sensorValue_number, 0, 1023, 0, 11);
+  return val;
+}
+
+void changeLed(uint16_t _br) {
+  static int preLedNum, ledNum;
+
+  ledNum = setNumber_Led();
+  
+  if(ledNum != preLedNum) {
+    setLedPwm(preLedNum, 0);
+    setLedPwm(ledNum, _br);
+  } else {
+    setLedPwm(ledNum, _br);
+  }
+
+  preLedNum = ledNum;  
 }
 
 void setLedPwm(uint8_t num, uint16_t br) {

@@ -29,8 +29,6 @@ void loop() {
   //setLedPwm(9, setBright_Led());  //R3 Channel
   //setLedPwm(10, setBright_Led());  //G3 Channel
   //setLedPwm(11, setBright_Led());  //B3 Channel
-
-  //changeLed(setBright_Led());
   
   //changeBr(setBright_Led());
   //delay(100);
